@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/efd1f3358d.js" crossorigin='anonymous'></script>
+
+    <title>About Us</title>
+    <link rel="stylesheet" href="about_style.css">
+</head>
+<body>
+    <header>
+        <nav class="nav-bar">
+            <img src="logo.png" alt="Bookelated Logo" class="logo">
+            <ul class="nav-links">
+                <li><a href="HOMEe.html">Home</a></li>
+                <li><a href="wishlist.html">Wishlist</a></li>
+                <li><a href="issue&return.html">Issue & Return</a></li>
+                <li><a href="profile.html" class="profile-link"><i class="fas fa-user"></i></a></li>
+            </ul>
+        </nav>
+
+    </header>
+    <main>
+        <h1>About Us</h1>
+        <img src="abt.jpg" alt="About Us" class="about-image">
+        <p>
+           <b> Welcome to Bookelated!</b>
+<br>
+            At Bookelated, we are passionate about providing students with the resources they need to succeed. Our library offers a wide range of academic textbooks, research papers, fiction, and non-fiction books.
+            <br>
+            <b>Digital Resources,</b> <br>
+            We provide access to e-books, online journals, databases, and multimedia resources, so you can find the information you need anytime, anywhere.
+            <br>
+           <b> Our Services</b><br>
+            Research Assistance: Our librarians are here to help you find the resources you need for your projects and assignments.
+            <br>
+            <b><i>Study Spaces:</i></b> Enjoy our quiet study areas and group discussion rooms.
+            <br>
+            <b><i>Workshops and Events:</i></b> Participate in our workshops, author talks, and book clubs.
+            <br>
+            
+           <b> Happy Reading and Learning!</b>
+        </p>
+
+        <h2>Share Your Feedback</h2>
+
+<form id="feedbackForm" action="/about-us" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" rows="3" required></textarea><br><br>
+
+    <button type="submit">Submit Feedback</button>
+</form>
+
+<div id="notification" style="display:none; color: green; text-align: center; margin-top: 10px;">
+    Thank you for your feedback!
+</div>
+</main>
+<footer>
+    <p>Copyright © 2025 Bookelated</p>
+</footer>
+
+<script>
+    document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        document.getElementById('notification').style.display = 'block';
+        setTimeout(function() {
+            document.getElementById('notification').style.display = 'none';
+        }, 50000);
+    });
+</script>

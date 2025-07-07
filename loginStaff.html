@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Login</title>
+    <link rel="stylesheet" href="login_style.css">
+    <script src="https://kit.fontawesome.com/efd1f3358d.js" crossorigin='anonymous'></script>
+</head>
+<body>
+    <img src="logo.png" alt="Bookelated Logo" class="logo">
+    <div class="login-section">
+        <form id="loginForm">
+            <h1>Login</h1>
+            <div class="input-group">
+                <i class='fas fa-user'></i>
+                <input type="text" id="userId" placeholder="Enter username" required>
+            </div>
+            <div class="input-group">
+                <i class='fas fa-lock'></i>
+                <input type="password" id="password" placeholder="Enter password" required>
+            </div>
+            <pre>       Student? <a href="LOGIN.html">Login here</a></pre>
+            <button type="submit" class="block">LOGIN</button>
+        </form>
+    </div>
+
+    <script>
+        const staff = [
+            {
+                id: "staff1",
+                password: "staffpass1",
+                name: "Staff Member 1",
+                email: "staff1@example.com",
+                contact: "+1234567890",
+                address: "123 Work Street, Job City, 67890",
+                pic: "default-profile.png"
+            },
+            {
+                id: "staff2",
+                password: "staffpass2",
+                name: "Staff Member 2",
+                email: "staff2@example.com",
+                contact: "+0987654321",
+                address: "456 Work Avenue, Job Town, 12345",
+                pic: "default-profile.png"
+            }
+            // Add more staff objects as needed
+        ];
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const userId = document.getElementById('userId').value;
+            const password = document.getElementById('password').value;
+            const staffMember = staff.find(s => s.id === userId && s.password === password);
+
+            if (staffMember) {
+                localStorage.setItem('loggedInStaff', JSON.stringify(staffMember));
+                window.location.href = 'admin.html';
+            } else {
+                alert('Invalid User ID or Password');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motivational Books</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <a href="HOMEe.html"><img src="logo.png" alt="Bookelated Logo" class="logo"></a>
+        <h2>Get inspired with these motivational books!</h2>
+    </header>
+
+    <div class="book-list">
+        <div class="book-item">
+            <img src="moti3.jpg" alt="Zero to One">
+            <h2>Zero to One</h2>
+            <div class="book-description">
+                A thought-provoking book about building successful businesses and making progress in the entrepreneurial world.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist('Zero to One', 'moti3.jpg', 'A thought-provoking book about building successful businesses and making progress in the entrepreneurial world.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook('Zero to One', 'moti3.jpg', 'A thought-provoking book about building successful businesses and making progress in the entrepreneurial world.')">Issue</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="moti5.jpg" alt="Rich Dad Poor Dad">
+            <h2>Rich Dad Poor Dad</h2>
+            <div class="book-description">
+                A powerful guide to personal finance, highlighting the importance of financial literacy and investing for wealth-building.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist('Rich Dad Poor Dad', 'moti5.jpg', 'A powerful guide to personal finance, highlighting the importance of financial literacy and investing for wealth-building.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook('Rich Dad Poor Dad', 'moti5.jpg', 'A powerful guide to personal finance, highlighting the importance of financial literacy and investing for wealth-building.')">Issue</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="moti4.jpg" alt="You Can Do It">
+            <h2>You Can Do It</h2>
+            <div class="book-description">
+                A motivational guide to help you overcome obstacles and achieve your dreams with determination and perseverance.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist('You Can Do It', 'moti4.jpg', 'A motivational guide to help you overcome obstacles and achieve your dreams with determination and perseverance.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook('You Can Do It', 'moti4.jpg', 'A motivational guide to help you overcome obstacles and achieve your dreams with determination and perseverance.')">Issue</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="moti1.jpg" alt="365 Days of Positive Thinking">
+            <h2>365 Days of Positive Thinking</h2>
+            <div class="book-description">
+                A daily guide to cultivating a positive mindset and turning challenges into opportunities for personal growth.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist('365 Days of Positive Thinking', 'moti1.jpg', 'A daily guide to cultivating a positive mindset and turning challenges into opportunities for personal growth.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook('365 Days of Positive Thinking', 'moti1.jpg', 'A daily guide to cultivating a positive mindset and turning challenges into opportunities for personal growth.')">Issue</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="moti2.jpg" alt="It's Never Too Late to Begin Again">
+            <h2>It's Never Too Late to Begin Again</h2>
+            <div class="book-description">
+                A motivational book encouraging you to start anew at any stage in life, pursuing your dreams and passions with vigor.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist('It’s Never Too Late to Begin Again', 'moti2.jpg', 'A motivational book encouraging you to start anew at any stage in life, pursuing your dreams and passions with vigor.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook('It’s Never Too Late to Begin Again', 'moti2.jpg', 'A motivational book encouraging you to start anew at any stage in life, pursuing your dreams and passions with vigor.')">Issue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Bookelated - Online Library. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function addToWishlist(name, image, description) {
+            const wishlistItem = { name, image, description };
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+            if (wishlist.some(item => item.name === name)) {
+                alert(`${name} is already in your wishlist.`);
+                return;
+            }
+
+            wishlist.push(wishlistItem);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            alert(`${name} has been added to your wishlist!`);
+        }
+
+        function issueBook(name, image, description) {
+            const issuedBook = { name, image, description };
+            const issuedBooks = JSON.parse(localStorage.getItem('issuedBooks')) || [];
+
+            if (issuedBooks.some(book => book.name === name)) {
+                alert(`${name} has already been issued.`);
+                return;
+            }
+
+            issuedBooks.push(issuedBook);
+            localStorage.setItem('issuedBooks', JSON.stringify(issuedBooks));
+            alert(`${name} has been issued!`);
+        }
+
+        async function fetchBooks() {
+            const category = 'Motivational'; // Adjust category if needed
+            try {
+                const response = await fetch('/api/books');
+                const books = await response.json();
+                const filteredBooks = books.filter(book => book.category === category);
+
+                const bookList = document.querySelector('.book-list');
+                bookList.innerHTML = '';
+
+                filteredBooks.forEach(book => {
+                    const bookItem = document.createElement('div');
+                    bookItem.classList.add('book-item');
+                    bookItem.innerHTML = `
+                        <img src="${book.image}" alt="${book.title}">
+                        <h2>${book.title}</h2>
+                        <div class="book-description">${book.description}</div>
+                        <div class="book-buttons">
+                            <button class="wishlist-button" onclick="addToWishlist('${book.title}', '${book.image}', '${book.description}')">Wishlist</button>
+                            <button class="issue-button" onclick="issueBook('${book.title}', '${book.image}', '${book.description}')">Issue</button>
+                        </div>
+                    `;
+                    bookList.appendChild(bookItem);
+                });
+            } catch (error) {
+                console.error('Error fetching books:', error);
+            }
+        }
+
+        // Uncomment this line to enable dynamic fetching
+        // fetchBooks();
+    </script>
+</body>
+
+</html>

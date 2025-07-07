@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Books</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+       <a href="HOMEe.html"><img src="logo.png" alt="Bookelated Logo" class="logo"></a> 
+        <h2>Explore these magical tales!</h2>
+    </header>
+
+    <div class="book-list">
+        <div class="book-item">
+            <img src="lionwitch.jpg" alt="The Lion, the Witch and the Wardrobe">
+            <h2>The Lion, the Witch and the Wardrobe</h2>
+            <div class="book-description">
+                A magical tale of four siblings who discover a wardrobe leading to the enchanting land of Narnia, where
+                they must help Aslan defeat the White Witch.
+                <div class="book-buttons">
+                    <button class="issue-button" onclick="issueBook(this, 'The Lion, the Witch and the Wardrobe', 'lionwitch.jpg', 'A magical tale of four siblings who discover a wardrobe leading to the enchanting land of Narnia, where they must help Aslan defeat the White Witch.')">Issue</button>
+                    <button class="wishlist-button" onclick="addToWishlist(this, 'The Lion, the Witch and the Wardrobe', 'lionwitch.jpg', 'A magical tale of four siblings who discover a wardrobe leading to the enchanting land of Narnia, where they must help Aslan defeat the White Witch.')">Wishlist</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="harry poter.jpg" alt="Harry Potter and the Sorcerer's Stone">
+            <h2>Harry Potter and the Sorcerer's Stone</h2>
+            <div class="book-description">
+                Follow Harry as he discovers he's a wizard, attends Hogwarts School of Witchcraft and Wizardry, and
+                faces the dark wizard Voldemort for the first time.
+                <div class="book-buttons">
+                    <button class="issue-button" onclick="issueBook(this, 'Harry Potter and the Sorcerer\'s Stone', 'harry poter.jpg', 'Follow Harry as he discovers he\'s a wizard, attends Hogwarts School of Witchcraft and Wizardry, and faces the dark wizard Voldemort for the first time.')">Issue</button>
+                    <button class="wishlist-button" onclick="addToWishlist(this, 'Harry Potter and the Sorcerer\'s Stone', 'harry poter.jpg', 'Follow Harry as he discovers he\'s a wizard, attends Hogwarts School of Witchcraft and Wizardry, and faces the dark wizard Voldemort for the first time.')">Wishlist</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="matilda.jpg" alt="Matilda">
+            <h2>Matilda</h2>
+            <div class="book-description">
+                The story of a brilliant young girl with extraordinary powers who stands up against her neglectful
+                parents and a terrifying school headmistress.
+                <div class="book-buttons">
+                    <button class="issue-button" onclick="issueBook(this, 'Matilda', 'matilda.jpg', 'The story of a brilliant young girl with extraordinary powers who stands up against her neglectful parents and a terrifying school headmistress.')">Issue</button>
+                    <button class="wishlist-button" onclick="addToWishlist(this, 'Matilda', 'matilda.jpg', 'The story of a brilliant young girl with extraordinary powers who stands up against her neglectful parents and a terrifying school headmistress.')">Wishlist</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="wildthing.jpg" alt="Where the Wild Things Are">
+            <h2>Where the Wild Things Are</h2>
+            <div class="book-description">
+                A delightful story of Max, who sails to an island of wild creatures and becomes their king before
+                realizing the importance of home.
+                <div class="book-buttons">
+                    <button class="issue-button" onclick="issueBook(this, 'Where the Wild Things Are', 'wildthing.jpg', 'A delightful story of Max, who sails to an island of wild creatures and becomes their king before realizing the importance of home.')">Issue</button>
+                    <button class="wishlist-button" onclick="addToWishlist(this, 'Where the Wild Things Are', 'wildthing.jpg', 'A delightful story of Max, who sails to an island of wild creatures and becomes their king before realizing the importance of home.')">Wishlist</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="gruffalo.jpg" alt="The Gruffalo">
+            <h2>The Gruffalo</h2>
+            <div class="book-description">
+                Join the clever mouse as he outwits predators in the forest by inventing a terrifying creature – only to
+                meet the Gruffalo himself!
+                <div class="book-buttons">
+                    <button class="issue-button" onclick="issueBook(this, 'The Gruffalo', 'gruffalo.jpg', 'Join the clever mouse as he outwits predators in the forest by inventing a terrifying creature – only to meet the Gruffalo himself!')">Issue</button>
+                    <button class="wishlist-button" onclick="addToWishlist(this, 'The Gruffalo', 'gruffalo.jpg', 'Join the clever mouse as he outwits predators in the forest by inventing a terrifying creature – only to meet the Gruffalo himself!')">Wishlist</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Bookelated - Online Library. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function addToWishlist(button, bookName, bookImage, bookDescription) {
+            const wishlistItem = { name: bookName, image: bookImage, description: bookDescription };
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            wishlist.push(wishlistItem);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            button.textContent = 'Added';
+            button.disabled = true;
+            alert(`${bookName} has been added to your wishlist!`);
+        }
+
+        function issueBook(button, bookName, bookImage, bookDescription) {
+            const issuedBook = { name: bookName, image: bookImage, description: bookDescription };
+            let issuedBooks = JSON.parse(localStorage.getItem('issuedBooks')) || [];
+            issuedBooks.push(issuedBook);
+            localStorage.setItem('issuedBooks', JSON.stringify(issuedBooks));
+            button.textContent = 'Issued';
+            button.disabled = true;
+            alert(`${bookName} has been issued!`);
+        }
+    </script>
+</body>
+</html>

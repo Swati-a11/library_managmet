@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist</title>
+    <link rel="stylesheet" href="stylep.css">
+</head>
+<body>
+    <header>
+        <nav class="nav-bar">
+            <img src="logo.png" alt="Bookelated Logo" class="logo">
+            <ul class="nav-links">
+                <li><a href="HOMEe.html">Home</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="LOGIN.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="wishlist-section">
+            <h1>Your Wishlist</h1>
+            <div class="book-list" id="wishlistItems">
+                <!-- Wishlist items will be loaded here -->
+            </div>
+            <p id="noBooksMessage" style="display: none; text-align: center; color: #e0e0e0;">No books in your wishlist.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Bookelated - Online Library. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function loadWishlist() {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const wishlistItemsContainer = document.getElementById('wishlistItems');
+            const noBooksMessage = document.getElementById('noBooksMessage');
+
+            wishlistItemsContainer.innerHTML = ''; // Clear existing items
+
+            if (wishlist.length === 0) {
+                noBooksMessage.style.display = 'block';
+            } else {
+                noBooksMessage.style.display = 'none';
+                wishlist.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.classList.add('book-item');
+                    itemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="book-description">
+                            <h2>${item.name}</h2>
+                            <p>${item.description}</p>
+                            <div class="book-buttons">
+                                <button class="issue-button" onclick="issueBook('${item.name}', '${item.image}', '${item.description}')">Issue</button>
+                                <button class="remove-button" onclick="removeFromWishlist('${item.name}')">Remove from Wishlist</button>
+                            </div>
+                        </div>
+                    `;
+                    wishlistItemsContainer.appendChild(itemElement);
+                });
+            }
+        }
+
+        function removeFromWishlist(bookName) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            wishlist = wishlist.filter(item => item.name !== bookName);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            loadWishlist();
+        }
+
+        function issueBook(bookName, bookImage, bookDescription) {
+            const issuedBook = {
+                name: bookName,
+                image: bookImage,
+                description: bookDescription
+            };
+
+            // Add to issued books in localStorage
+            let issuedBooks = JSON.parse(localStorage.getItem('issuedBooks')) || [];
+            issuedBooks.push(issuedBook);
+            localStorage.setItem('issuedBooks', JSON.stringify(issuedBooks));
+
+            // Remove from wishlist
+            removeFromWishlist(bookName);
+
+            alert(`${bookName} has been issued!`);
+        }
+
+        // Load wishlist on page load
+        window.onload = loadWishlist;
+    </script>
+</body>
+</html>

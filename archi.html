@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture Books</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <a href="HOMEe.html"><img src="logo.png" alt="Bookelated Logo" class="logo"></a>
+        <h2>Design, Structure, and Innovation</h2>
+    </header>
+
+    <div class="book-list">
+        <div class="book-item">
+            <img src="arc3.jpg" alt="Future Architecture 100 Buildings">
+            <h2>Future Architecture 100 Buildings</h2>
+            <div class="book-description">
+                A visual collection of the most groundbreaking architectural projects of the future.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist(this, 'Future Architecture 100 Buildings', 'arc3.jpg', 'A visual collection of the most groundbreaking architectural projects of the future.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook(this, 'Future Architecture 100 Buildings', 'arc3.jpg', 'A visual collection of the most groundbreaking architectural projects of the future.')">Issue</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="arc1.jpg" alt="Dictionary of Architecture and Constructions">
+            <h2>Dictionary of Architecture and Constructions</h2>
+            <div class="book-description">
+                A comprehensive reference guide for architectural terms and construction techniques.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist(this, 'Dictionary of Architecture and Constructions', 'arc1.jpg', 'A comprehensive reference guide for architectural terms and construction techniques.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook(this, 'Dictionary of Architecture and Constructions', 'arc1.jpg', 'A comprehensive reference guide for architectural terms and construction techniques.')">Issue</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="arc2.jpg" alt="Understand Architecture">
+            <h2>Understand Architecture</h2>
+            <div class="book-description">
+                An insightful exploration of architectural design, theory, and its historical significance.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist(this, 'Understand Architecture', 'arc2.jpg', 'An insightful exploration of architectural design, theory, and its historical significance.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook(this, 'Understand Architecture', 'arc2.jpg', 'An insightful exploration of architectural design, theory, and its historical significance.')">Issue</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="arc5.jpg" alt="Modern Architecture A-L">
+            <h2>Modern Architecture A-L</h2>
+            <div class="book-description">
+                A detailed overview of modern architectural styles and iconic structures from A to L.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist(this, 'Modern Architecture A-L', 'arc5.jpg', 'A detailed overview of modern architectural styles and iconic structures from A to L.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook(this, 'Modern Architecture A-L', 'arc5.jpg', 'A detailed overview of modern architectural styles and iconic structures from A to L.')">Issue</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="arc4.jpg" alt="Contemporary Japanese Architecture">
+            <h2>Contemporary Japanese Architecture</h2>
+            <div class="book-description">
+                A look into the innovative and minimalist designs shaping the Japanese architectural landscape today.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist(this, 'Contemporary Japanese Architecture', 'arc4.jpg', 'A look into the innovative and minimalist designs shaping the Japanese architectural landscape today.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook(this, 'Contemporary Japanese Architecture', 'arc4.jpg', 'A look into the innovative and minimalist designs shaping the Japanese architectural landscape today.')">Issue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Bookelated - Online Library. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function addToWishlist(button, bookName, bookImage, bookDescription) {
+            const wishlistItem = {
+                name: bookName,
+                image: bookImage,
+                description: bookDescription
+            };
+
+            // Add to localStorage
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            wishlist.push(wishlistItem);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+
+            // Change button text to "Added"
+            button.textContent = 'Added';
+            button.disabled = true;
+
+            alert(`${bookName} has been added to your wishlist!`);
+        }
+
+        function issueBook(button, bookName, bookImage, bookDescription) {
+            const issuedBook = {
+                name: bookName,
+                image: bookImage,
+                description: bookDescription
+            };
+
+            // Add to localStorage
+            let issuedBooks = JSON.parse(localStorage.getItem('issuedBooks')) || [];
+            issuedBooks.push(issuedBook);
+            localStorage.setItem('issuedBooks', JSON.stringify(issuedBooks));
+
+            // Change button text to "Issued"
+            button.textContent = 'Issued';
+            button.disabled = true;
+
+            alert(`${bookName} has been issued!`);
+        }
+    </script>
+</body>
+
+</html>

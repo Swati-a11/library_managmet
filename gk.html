@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Knowledge Books</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <a href="HOMEe.html"><img src="logo.png" alt="Bookelated Logo" class="logo"></a>
+        <h2>Boost your knowledge with these books!</h2>
+    </header>
+
+    <div class="book-list">
+        <div class="book-item">
+            <img src="lgk.jpg" alt="Lucent's General Knowledge">
+            <h2>Lucent's General Knowledge</h2>
+            <div class="book-description">
+                A comprehensive book covering a wide range of general knowledge topics, ideal for competitive exams and personal growth.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist('Lucent\'s General Knowledge', 'lgk.jpg', 'A comprehensive book covering a wide range of general knowledge topics, ideal for competitive exams and personal growth.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook('Lucent\'s General Knowledge', 'lgk.jpg', 'A comprehensive book covering a wide range of general knowledge topics, ideal for competitive exams and personal growth.')">Issue</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="static gk.jpg" alt="Static GK">
+            <h2>Static GK</h2>
+            <div class="book-description">
+                Focus on static general knowledge facts that remain unchanged, covering history, geography, and significant events.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist('Static GK', 'static gk.jpg', 'Focus on static general knowledge facts that remain unchanged, covering history, geography, and significant events.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook('Static GK', 'static gk.jpg', 'Focus on static general knowledge facts that remain unchanged, covering history, geography, and significant events.')">Issue</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="vgk.jpg" alt="Viva General Knowledge">
+            <h2>Viva General Knowledge</h2>
+            <div class="book-description">
+                An engaging book designed to provide an easy understanding of general knowledge concepts with quizzes and exercises.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist('Viva General Knowledge', 'vgk.jpg', 'An engaging book designed to provide an easy understanding of general knowledge concepts with quizzes and exercises.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook('Viva General Knowledge', 'vgk.jpg', 'An engaging book designed to provide an easy understanding of general knowledge concepts with quizzes and exercises.')">Issue</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="sbgk.jpg" alt="Sahitya Bhawna General Knowledge">
+            <h2>Sahitya Bhawna General Knowledge</h2>
+            <div class="book-description">
+                A must-have resource offering in-depth coverage of general knowledge topics for exam preparation and learning.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist('Sahitya Bhawna General Knowledge', 'sbgk.jpg', 'A must-have resource offering in-depth coverage of general knowledge topics for exam preparation and learning.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook('Sahitya Bhawna General Knowledge', 'sbgk.jpg', 'A must-have resource offering in-depth coverage of general knowledge topics for exam preparation and learning.')">Issue</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="gkneeraj.jpg" alt="General Knowledge Neeraj">
+            <h2>General Knowledge Neeraj</h2>
+            <div class="book-description">
+                A well-structured guide to general knowledge, featuring the latest updates and topics relevant for all learners.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist('General Knowledge Neeraj', 'gkneeraj.jpg', 'A well-structured guide to general knowledge, featuring the latest updates and topics relevant for all learners.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook('General Knowledge Neeraj', 'gkneeraj.jpg', 'A well-structured guide to general knowledge, featuring the latest updates and topics relevant for all learners.')">Issue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Bookelated - Online Library. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function addToWishlist(name, image, description) {
+            const wishlistItem = { name, image, description };
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+            if (wishlist.some(item => item.name === name)) {
+                alert(`${name} is already in your wishlist.`);
+                return;
+            }
+
+            wishlist.push(wishlistItem);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            alert(`${name} has been added to your wishlist!`);
+        }
+
+        function issueBook(name, image, description) {
+            const issuedBook = { name, image, description };
+            const issuedBooks = JSON.parse(localStorage.getItem('issuedBooks')) || [];
+
+            if (issuedBooks.some(book => book.name === name)) {
+                alert(`${name} has already been issued.`);
+                return;
+            }
+
+            issuedBooks.push(issuedBook);
+            localStorage.setItem('issuedBooks', JSON.stringify(issuedBooks));
+            alert(`${name} has been issued!`);
+        }
+    </script>
+</body>
+
+</html>

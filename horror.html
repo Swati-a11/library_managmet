@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horror Books</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <a href="HOMEe.html"><img src="logo.png" alt="Bookelated Logo" class="logo"></a>
+        <h2>Explore these spine-chilling tales!</h2>
+    </header>
+
+    <div class="book-list">
+        <div class="book-item">
+            <img src="body.jpg" alt="Body in the Woods">
+            <h2>Body in the Woods</h2>
+            <div class="book-description">
+                A chilling story of a group of friends who stumble upon a horrifying discovery in the woods, leading to
+                a suspenseful hunt for the truth.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist('Body in the Woods', 'body.jpg', 'A chilling story of a group of friends who stumble upon a horrifying discovery in the woods, leading to a suspenseful hunt for the truth.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook('Body in the Woods', 'body.jpg', 'A chilling story of a group of friends who stumble upon a horrifying discovery in the woods, leading to a suspenseful hunt for the truth.')">Issue</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="horrorTown.jpg" alt="Horror Town">
+            <h2>Horror Town</h2>
+            <div class="book-description">
+                Journey into Horror Town, a place plagued by terrifying secrets and dark creatures lurking in every
+                shadow.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist('Horror Town', 'horrorTown.jpg', 'Journey into Horror Town, a place plagued by terrifying secrets and dark creatures lurking in every shadow.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook('Horror Town', 'horrorTown.jpg', 'Journey into Horror Town, a place plagued by terrifying secrets and dark creatures lurking in every shadow.')">Issue</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="australian.jpg" alt="An Australian Dream">
+            <h2>An Australian Dream</h2>
+            <div class="book-description">
+                A haunting tale that uncovers the nightmares hidden within a seemingly idyllic Australian town, leaving
+                readers on edge.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist('An Australian Dream', 'australian.jpg', 'A haunting tale that uncovers the nightmares hidden within a seemingly idyllic Australian town, leaving readers on edge.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook('An Australian Dream', 'australian.jpg', 'A haunting tale that uncovers the nightmares hidden within a seemingly idyllic Australian town, leaving readers on edge.')">Issue</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="house.jpg" alt="The House">
+            <h2>The House</h2>
+            <div class="book-description">
+                Discover the mysteries of an abandoned house that has trapped countless souls and harbors dark, twisted
+                memories.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist('The House', 'house.jpg', 'Discover the mysteries of an abandoned house that has trapped countless souls and harbors dark, twisted memories.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook('The House', 'house.jpg', 'Discover the mysteries of an abandoned house that has trapped countless souls and harbors dark, twisted memories.')">Issue</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="pretty.jpg" alt="So Pretty">
+            <h2>So Pretty</h2>
+            <div class="book-description">
+                A spine-tingling story about beauty, obsession, and the horrific lengths people go to preserve their
+                allure.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist('So Pretty', 'pretty.jpg', 'A spine-tingling story about beauty, obsession, and the horrific lengths people go to preserve their allure.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook('So Pretty', 'pretty.jpg', 'A spine-tingling story about beauty, obsession, and the horrific lengths people go to preserve their allure.')">Issue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Bookelated - Online Library. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function addToWishlist(name, image, description) {
+            const wishlistItem = { name, image, description };
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+            if (wishlist.some(item => item.name === name)) {
+                alert(`${name} is already in your wishlist.`);
+                return;
+            }
+
+            wishlist.push(wishlistItem);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            alert(`${name} has been added to your wishlist!`);
+        }
+
+        function issueBook(name, image, description) {
+            const issuedBook = { name, image, description };
+            const issuedBooks = JSON.parse(localStorage.getItem('issuedBooks')) || [];
+
+            if (issuedBooks.some(book => book.name === name)) {
+                alert(`${name} has already been issued.`);
+                return;
+            }
+
+            issuedBooks.push(issuedBook);
+            localStorage.setItem('issuedBooks', JSON.stringify(issuedBooks));
+            alert(`${name} has been issued!`);
+        }
+
+        async function fetchBooks() {
+            const category = 'Horror'; // Replace with dynamic category detection if needed
+            try {
+                const response = await fetch('/api/books');
+                const books = await response.json();
+                const filteredBooks = books.filter(book => book.category === category);
+
+                const bookList = document.querySelector('.book-list');
+                bookList.innerHTML = '';
+
+                filteredBooks.forEach(book => {
+                    const bookItem = document.createElement('div');
+                    bookItem.classList.add('book-item');
+                    bookItem.innerHTML = `
+                        <img src="${book.image}" alt="${book.title}">
+                        <h2>${book.title}</h2>
+                        <div class="book-description">${book.description}</div>
+                        <div class="book-buttons">
+                            <button class="wishlist-button" onclick="addToWishlist('${book.title}', '${book.image}', '${book.description}')">Wishlist</button>
+                            <button class="issue-button" onclick="issueBook('${book.title}', '${book.image}', '${book.description}')">Issue</button>
+                        </div>
+                    `;
+                    bookList.appendChild(bookItem);
+                });
+            } catch (error) {
+                console.error('Error fetching books:', error);
+            }
+        }
+
+        // Uncomment this line if dynamic fetching is required
+        // fetchBooks();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #444343;
+}
+
+.nav-bar {
+    color: #fff;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 90px;
+    height: 90px;
+    margin-right: 1em;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-links li {
+    display: block;
+    margin-right: 1.5em;
+}
+
+.nav-links li:hover {
+    text-decoration: underline rgb(24, 175, 163);
+    display: block;
+}
+
+.nav-links a {
+    color: #fffdfd;
+    text-decoration: none;
+}
+
+.profile-link {
+    margin-right: 0;
+}
+
+header {
+    background-image: url(show.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#show p {
+    color: rgb(12, 12, 12);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 100px;
+    text-align: left;
+    margin-top: 5%;
+    margin-right: 50%;
+    margin-left: 1%;
+    text-shadow: 5px 2px rgb(70, 190, 170);
+    padding: 2px;
+}
+
+h2 {
+    font-family: fantasy;
+    font-size: 60px;
+    margin-left: 1em;
+    color: rgb(129, 218, 198);
+    text-shadow: 3px 3px black;
+}
+
+.categories {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+}
+
+.category-blocks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.category-block {
+    background-color: #555151;
+    padding: 1em;
+    margin: 1em;
+    width: 220px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.category-block:hover {
+    border: 2px solid rgba(22, 121, 104, 0.5);
+    box-shadow: 0 0 30px rgba(9, 138, 121, 0.1);
+}
+
+.category-block a {
+    text-decoration: none;
+}
+
+.category-block h3 {
+    color: #fcf9f9;
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 5%;
+}
+
+.category-block img {
+    position: absolute;
+    height: 170px;
+    width: 190px;
+}
+
+footer {
+    background-color: rgb(24, 175, 163);
+    margin-bottom: 0;
+}
+
+footer h2 {
+    color: black;
+    text-shadow: 3px 3px rgb(129, 218, 198);
+    text-align: center;
+}
+
+.icons a i {
+    text-decoration: none;
+    color: rgb(12, 12, 12);
+    margin-left: 1em;
+    font-size: 40px;
+}
+
+.icons a i:hover {
+    color: white;
+}

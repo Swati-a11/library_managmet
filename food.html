@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Books</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <a href="HOMEe.html"><img src="logo.png" alt="Bookelated Logo" class="logo"></a>
+        <h2>Explore these delicious recipes!</h2>
+    </header>
+
+    <div class="book-list">
+        <div class="book-item">
+            <img src="food1.jpg" alt="The Everything Healthy Meal Prep Book">
+            <h2>The Everything Healthy Meal Prep Book</h2>
+            <div class="book-description">
+                Learn how to plan and prepare healthy meals in advance, saving time while sticking to your wellness goals.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist(this, 'The Everything Healthy Meal Prep Book', 'food1.jpg', 'Learn how to plan and prepare healthy meals in advance, saving time while sticking to your wellness goals.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook(this, 'The Everything Healthy Meal Prep Book', 'food1.jpg', 'Learn how to plan and prepare healthy meals in advance, saving time while sticking to your wellness goals.')">Issue</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="food5.jpg" alt="The Cooking for One">
+            <h2>The Cooking for One</h2>
+            <div class="book-description">
+                A guide to creating satisfying and delicious meals for solo dining without the hassle of leftovers.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist(this, 'The Cooking for One', 'food5.jpg', 'A guide to creating satisfying and delicious meals for solo dining without the hassle of leftovers.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook(this, 'The Cooking for One', 'food5.jpg', 'A guide to creating satisfying and delicious meals for solo dining without the hassle of leftovers.')">Issue</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="food2.jpg" alt="My Favourite Recipes">
+            <h2>My Favourite Recipes</h2>
+            <div class="book-description">
+                A delightful collection of cherished recipes, perfect for every occasion, from family dinners to celebrations.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist(this, 'My Favourite Recipes', 'food2.jpg', 'A delightful collection of cherished recipes, perfect for every occasion, from family dinners to celebrations.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook(this, 'My Favourite Recipes', 'food2.jpg', 'A delightful collection of cherished recipes, perfect for every occasion, from family dinners to celebrations.')">Issue</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="food3.jpg" alt="Genius Recipes">
+            <h2>Genius Recipes</h2>
+            <div class="book-description">
+                Discover creative and unique recipes that transform ordinary ingredients into extraordinary meals.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist(this, 'Genius Recipes', 'food3.jpg', 'Discover creative and unique recipes that transform ordinary ingredients into extraordinary meals.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook(this, 'Genius Recipes', 'food3.jpg', 'Discover creative and unique recipes that transform ordinary ingredients into extraordinary meals.')">Issue</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="food4.jpg" alt="Cooking for Two">
+            <h2>Cooking for Two</h2>
+            <div class="book-description">
+                Perfectly portioned recipes designed for two, making it ideal for couples or small families.
+                <div class="book-buttons">
+                    <button class="wishlist-button" onclick="addToWishlist(this, 'Cooking for Two', 'food4.jpg', 'Perfectly portioned recipes designed for two, making it ideal for couples or small families.')">Wishlist</button>
+                    <button class="issue-button" onclick="issueBook(this, 'Cooking for Two', 'food4.jpg', 'Perfectly portioned recipes designed for two, making it ideal for couples or small families.')">Issue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Bookelated - Online Library. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function addToWishlist(button, bookName, bookImage, bookDescription) {
+            const wishlistItem = {
+                name: bookName,
+                image: bookImage,
+                description: bookDescription
+            };
+
+            // Add to localStorage
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            wishlist.push(wishlistItem);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+
+            // Change button text to "Added"
+            button.textContent = 'Added';
+            button.disabled = true;
+
+            alert(`${bookName} has been added to your wishlist!`);
+        }
+
+        function issueBook(button, bookName, bookImage, bookDescription) {
+            const issuedBook = {
+                name: bookName,
+                image: bookImage,
+                description: bookDescription
+            };
+
+            // Add to localStorage
+            let issuedBooks = JSON.parse(localStorage.getItem('issuedBooks')) || [];
+            issuedBooks.push(issuedBook);
+            localStorage.setItem('issuedBooks', JSON.stringify(issuedBooks));
+
+            // Change button text to "Issued"
+            button.textContent = 'Issued';
+            button.disabled = true;
+
+            alert(`${bookName} has been issued!`);
+        }
+    </script>
+</body>
+
+</html>

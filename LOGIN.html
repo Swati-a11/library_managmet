@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login_style.css">
+    <script src="https://kit.fontawesome.com/efd1f3358d.js" crossorigin='anonymous'></script>
+</head>
+<body>
+    <img src="logo.png" alt="Bookelated Logo" class="logo">
+    <div class="login-section">
+        <form id="loginForm">
+            <h1>Login</h1>
+            <div class="input-group">
+                <i class='fas fa-user'></i>
+                <input type="text" id="userId" placeholder="Enter username" required>
+            </div>
+            <div class="input-group">
+                <i class='fas fa-lock'></i>
+                <input type="password" id="password" placeholder="Enter password" required>
+            </div>
+            <pre>       Staff member? <a href="loginStaff.html">Login here</a></pre>
+            <button type="submit" class="block">LOGIN</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Bookelated - Online Library. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const students = [
+            {
+                id: "simran",
+                password: "2005",
+                name: "Simranjit Kaur",
+                email: "simranjitkaur@gmail.com",
+                contact: "9464794573",
+                address: "Kapurthala, Punjab",
+                pic: "default-profile.png"
+            },
+            {
+                id: "swati",
+                password: "1234",
+                name: "Swati Kumari",
+                email: "swatikumari@gmail.com",
+                contact: "7343248754",
+                address: "Bihar",
+                pic: "default-profile.png"
+            },
+            {
+                id: "arun",
+                password: "2003",
+                name: "Arundeep Kaur",
+                email: "arundeepk9@gmail.com",
+                contact: "7814603995",
+                address: "kachre",
+                pic: "default-profile.png"
+            }
+            // Add more student objects as needed
+        ];
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const userId = document.getElementById('userId').value;
+            const password = document.getElementById('password').value;
+            const student = students.find(s => s.id === userId && s.password === password);
+
+            if (student) {
+                localStorage.setItem('loggedInStudent', JSON.stringify(student));
+                window.location.href = 'HOMEe.html';
+            } else {
+                alert('Invalid User ID or Password');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Books</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <a href="HOMEe.html"><img src="logo.png" alt="Bookelated Logo" class="logo"></a>
+        <h2>Expand your knowledge with these books!</h2>
+    </header>
+
+    <div class="book-list">
+        <div class="book-item">
+            <img src="compFundamentals.jpg" alt="Computer Fundamentals">
+            <h2>Computer Fundamentals</h2>
+            <div class="book-description">
+                A beginner's guide to understanding the core principles of computers, including hardware, software, and operating systems.
+                <div class="book-buttons">
+                    <button class="issue-button" onclick="issueBook(this, 'Computer Fundamentals', 'compFundamentals.jpg', 'A beginner\'s guide to understanding the core principles of computers, including hardware, software, and operating systems.')">Issue</button>
+                    <button class="wishlist-button" onclick="addToWishlist(this, 'Computer Fundamentals', 'compFundamentals.jpg', 'A beginner\'s guide to understanding the core principles of computers, including hardware, software, and operating systems.')">Wishlist</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="bce.jpg" alt="Basic Computer Engineering">
+            <h2>Basic Computer Engineering</h2>
+            <div class="book-description">
+                An introduction to computer engineering concepts, covering topics like programming, digital systems, and logic design.
+                <div class="book-buttons">
+                    <button class="issue-button" onclick="issueBook(this, 'Basic Computer Engineering', 'bce.jpg', 'An introduction to computer engineering concepts, covering topics like programming, digital systems, and logic design.')">Issue</button>
+                    <button class="wishlist-button" onclick="addToWishlist(this, 'Basic Computer Engineering', 'bce.jpg', 'An introduction to computer engineering concepts, covering topics like programming, digital systems, and logic design.')">Wishlist</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="dsa.jpg" alt="Decoding DSA">
+            <h2>Decoding DSA</h2>
+            <div class="book-description">
+                Master the fundamentals of data structures and algorithms with easy-to-follow explanations and practical examples.
+                <div class="book-buttons">
+                    <button class="issue-button" onclick="issueBook(this, 'Decoding DSA', 'dsa.jpg', 'Master the fundamentals of data structures and algorithms with easy-to-follow explanations and practical examples.')">Issue</button>
+                    <button class="wishlist-button" onclick="addToWishlist(this, 'Decoding DSA', 'dsa.jpg', 'Master the fundamentals of data structures and algorithms with easy-to-follow explanations and practical examples.')">Wishlist</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="network.jpg" alt="Computer Networks">
+            <h2>Computer Networks</h2>
+            <div class="book-description">
+                A comprehensive guide to networking concepts, protocols, and technologies, essential for modern communication systems.
+                <div class="book-buttons">
+                    <button class="issue-button" onclick="issueBook(this, 'Computer Networks', 'network.jpg', 'A comprehensive guide to networking concepts, protocols, and technologies, essential for modern communication systems.')">Issue</button>
+                    <button class="wishlist-button" onclick="addToWishlist(this, 'Computer Networks', 'network.jpg', 'A comprehensive guide to networking concepts, protocols, and technologies, essential for modern communication systems.')">Wishlist</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-item">
+            <img src="hardwareANDmain.jpg" alt="Computer Hardware and Maintenance">
+            <h2>Computer Hardware and Maintenance</h2>
+            <div class="book-description">
+                Learn about the components of a computer, how they function, and practical tips for troubleshooting and maintenance.
+                <div class="book-buttons">
+                    <button class="issue-button" onclick="issueBook(this, 'Computer Hardware and Maintenance', 'hardwareANDmain.jpg', 'Learn about the components of a computer, how they function, and practical tips for troubleshooting and maintenance.')">Issue</button>
+                    <button class="wishlist-button" onclick="addToWishlist(this, 'Computer Hardware and Maintenance', 'hardwareANDmain.jpg', 'Learn about the components of a computer, how they function, and practical tips for troubleshooting and maintenance.')">Wishlist</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addToWishlist(button, bookName, bookImage, bookDescription) {
+            const wishlistItem = { name: bookName, image: bookImage, description: bookDescription };
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            wishlist.push(wishlistItem);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            button.textContent = 'Added';
+            button.disabled = true;
+            alert(`${bookName} has been added to your wishlist!`);
+        }
+
+        function issueBook(button, bookName, bookImage, bookDescription) {
+            const issuedBook = { name: bookName, image: bookImage, description: bookDescription };
+            let issuedBooks = JSON.parse(localStorage.getItem('issuedBooks')) || [];
+            issuedBooks.push(issuedBook);
+            localStorage.setItem('issuedBooks', JSON.stringify(issuedBooks));
+            button.textContent = 'Issued';
+            button.disabled = true;
+            alert(`${bookName} has been issued!`);
+        }
+    </script>
+
+</body>
+
+</html>

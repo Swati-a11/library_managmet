@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Bookelated</title>
+    <link rel="stylesheet" href="stylep.css">
+</head>
+<body>
+    <header>
+        <nav class="nav-bar">
+            <img src="logo.png" alt="Bookelated Logo" class="logo">
+            <ul class="nav-links">
+                <li><a href="HOMEe.html">Home</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="LOGIN.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="profile-section">
+            <h1>Student Profile</h1>
+            <div class="profile-card">
+                <div class="student-info">
+                    <h2 id="student-name">Name: John Doe</h2>
+                    <p><strong>Email:</strong> <span id="student-email">john.doe@example.com</span></p>
+                    <p><strong>Contact:</strong> <span id="student-contact">+1234567890</span></p>
+                    <p><strong>Address:</strong> <span id="student-address">123 Book Street, Bibliophile City, 56789</span></p>
+                    <button class="edit-button" onclick="toggleEditForm()">Edit Profile</button>
+                </div>
+                <img src="digit.jpg" alt="Profile Picture" class="profile-pic" id="student-pic">
+            </div>
+            <div class="edit-form" id="editForm" style="display: none;">
+                <h2>Edit Profile</h2>
+                <form id="editProfileForm">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name"><br>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email"><br>
+                    <label for="contact">Contact:</label>
+                    <input type="text" id="contact" name="contact"><br>
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address"><br>
+                    <button type="submit">Save Changes</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Bookelated - Online Library. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function loadStudentProfile() {
+            const student = JSON.parse(localStorage.getItem('loggedInStudent'));
+
+            if (student) {
+                document.getElementById('student-name').textContent = `Name: ${student.name}`;
+                document.getElementById('student-email').textContent = student.email;
+                document.getElementById('student-contact').textContent = student.contact;
+                document.getElementById('student-address').textContent = student.address;
+                document.getElementById('student-pic').src = student.pic;
+
+                // Populate the edit form with the student's data
+                document.getElementById('name').value = student.name;
+                document.getElementById('email').value = student.email;
+                document.getElementById('contact').value = student.contact;
+                document.getElementById('address').value = student.address;
+            } else {
+                alert('No student is logged in');
+                window.location.href = 'login.html';
+            }
+        }
+
+        function toggleEditForm() {
+            const editForm = document.getElementById('editForm');
+            if (editForm.style.display === 'none') {
+                editForm.style.display = 'block';
+            } else {
+                editForm.style.display = 'none';
+            }
+        }
+
+        document.getElementById('editProfileForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const student = JSON.parse(localStorage.getItem('loggedInStudent'));
+
+            student.name = document.getElementById('name').value;
+            student.email = document.getElementById('email').value;
+            student.contact = document.getElementById('contact').value;
+            student.address = document.getElementById('address').value;
+
+            localStorage.setItem('loggedInStudent', JSON.stringify(student));
+            loadStudentProfile();
+            toggleEditForm();
+        });
+
+        // Load the logged-in student's profile on page load
+        window.onload = loadStudentProfile;
+    </script>
+</body>
+</html>

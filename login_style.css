@@ -1,0 +1,87 @@
+html {
+    background-image: url(black.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.logo {
+    display: block;
+    width: 90px;
+    height: 90px;
+    margin-right: 1em;
+}
+
+.login-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 40px 60px;
+    background-color: rgba(245, 220, 183, 0.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin:70px auto;
+    max-width: 400px;
+    border-radius: 10px;
+}
+
+.login-section h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+    color: black;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+.login-section form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.input-group i {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.login-section input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.login-section button {
+    background-color: white;
+    color: black;
+    padding: 10px ;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    margin: 0 25px 0 35px;
+}
+
+.login-section button:hover {
+    background-color:black;
+    color:white;
+}
+.login-section pre {
+    font-size: 1.2em;
+    text-align: center;
+    color : black;
+    font-family: 'Times New Roman', Times, serif;
+}

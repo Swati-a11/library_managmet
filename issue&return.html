@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issue & Return</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="HOMEe.html"><img src="logo.png" alt="Bookelated Logo" class="logo"></a> 
+        <h2>Issue & Return</h2>
+    </header>
+
+    <main>
+        <section class="student-section">
+            <h3 style="margin-left: 10px;font-size: larger;font-family: 'Times New Roman', Times, serif;">Issued Books</h3><br>
+            <div id="issuedBooks">
+                <!-- Issued books will be dynamically populated here -->
+            </div>
+            <p id="noBooksMessage" style="display: none; text-align: center; color: #e0e0e0;">No books have been issued.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Copyright © 2024 Bookelated</p>
+    </footer>
+
+    <script>
+        const userId = "student123"; // Replace with dynamic student ID if needed
+
+        function loadIssuedBooks() {
+            const issuedBooks = JSON.parse(localStorage.getItem('issuedBooks')) || [];
+            const issuedBooksContainer = document.getElementById('issuedBooks');
+            const noBooksMessage = document.getElementById('noBooksMessage');
+
+            issuedBooksContainer.innerHTML = ''; // Clear existing items
+
+            if (issuedBooks.length === 0) {
+                noBooksMessage.style.display = 'block';
+            } else {
+                noBooksMessage.style.display = 'none';
+                issuedBooks.forEach((book, index) => {
+                    const issueDate = new Date(book.issueDate).toLocaleDateString();
+
+                    const bookElement = document.createElement('div');
+                    bookElement.classList.add('book-item');
+                    bookElement.innerHTML = `
+                        <img src="${book.image}" alt="${book.name}">
+                        <div class="book-description">
+                            <h2>${book.name}</h2>
+                            <p>${book.description}</p>
+                            <p><strong>Issued on:</strong> ${issueDate}</p>
+                            <button class="return-button" onclick="returnBook(${index})">Return</button>
+                        </div>
+                    `;
+                    issuedBooksContainer.appendChild(bookElement);
+                });
+            }
+        }
+
+        function returnBook(index) {
+            let issuedBooks = JSON.parse(localStorage.getItem('issuedBooks')) || [];
+            issuedBooks.splice(index, 1);
+            localStorage.setItem('issuedBooks', JSON.stringify(issuedBooks));
+            loadIssuedBooks();
+            alert('Book has been returned!');
+        }
+
+        // Load issued books on page load
+        window.onload = loadIssuedBooks;
+    </script>
+</body>
+</html>
